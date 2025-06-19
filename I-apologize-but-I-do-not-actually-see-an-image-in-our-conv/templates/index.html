@@ -1,0 +1,232 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hero-section">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="text-center mb-5">
+                    <h1 class="display-4 fw-bold text-white mb-3">
+                        <i data-feather="shield-check" class="text-warning"></i>
+                        Hệ Thống Chữ Ký Số
+                    </h1>
+                    <p class="lead text-white-50">
+                        Bảo mật và xác thực tài liệu của bạn với công nghệ mã hóa RSA tiên tiến
+                    </p>
+                </div>
+
+                <!-- Process Flow Diagram -->
+                <div class="process-diagram mb-5">
+                    <div class="row g-4">
+                        <div class="col-lg-6">
+                            <div class="process-card signing-card">
+                                <div class="process-header">
+                                    <h3 class="text-center mb-4">
+                                        <i data-feather="edit-3" class="text-primary"></i>
+                                        Quá Trình Ký
+                                    </h3>
+                                </div>
+                                <div class="process-flow">
+                                    <div class="flow-step">
+                                        <div class="step-icon">
+                                            <i data-feather="file-text"></i>
+                                        </div>
+                                        <div class="step-content">
+                                            <h6>Dữ liệu</h6>
+                                            <small>Tài liệu cần ký</small>
+                                        </div>
+                                    </div>
+                                    <div class="flow-arrow">→</div>
+                                    <div class="flow-step">
+                                        <div class="step-icon hash-icon">
+                                            <i data-feather="hash"></i>
+                                        </div>
+                                        <div class="step-content">
+                                            <h6>Hàm Hash</h6>
+                                            <small>SHA-256</small>
+                                        </div>
+                                    </div>
+                                    <div class="flow-arrow">→</div>
+                                    <div class="flow-step">
+                                        <div class="step-icon encrypt-icon">
+                                            <i data-feather="lock"></i>
+                                        </div>
+                                        <div class="step-content">
+                                            <h6>Mã hóa</h6>
+                                            <small>Private Key</small>
+                                        </div>
+                                    </div>
+                                    <div class="flow-arrow">→</div>
+                                    <div class="flow-step">
+                                        <div class="step-icon cert-icon">
+                                            <i data-feather="award"></i>
+                                        </div>
+                                        <div class="step-content">
+                                            <h6>Chứng chỉ</h6>
+                                            <small>Digital Certificate</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="process-card verification-card">
+                                <div class="process-header">
+                                    <h3 class="text-center mb-4">
+                                        <i data-feather="check-circle" class="text-success"></i>
+                                        Quá Trình Xác Thực
+                                    </h3>
+                                </div>
+                                <div class="process-flow">
+                                    <div class="flow-step">
+                                        <div class="step-icon">
+                                            <i data-feather="file-check"></i>
+                                        </div>
+                                        <div class="step-content">
+                                            <h6>Dữ liệu đã ký</h6>
+                                            <small>Signed Document</small>
+                                        </div>
+                                    </div>
+                                    <div class="flow-arrow">→</div>
+                                    <div class="flow-step">
+                                        <div class="step-icon decrypt-icon">
+                                            <i data-feather="unlock"></i>
+                                        </div>
+                                        <div class="step-content">
+                                            <h6>Giải mã</h6>
+                                            <small>Public Key</small>
+                                        </div>
+                                    </div>
+                                    <div class="flow-arrow">→</div>
+                                    <div class="flow-step">
+                                        <div class="step-icon compare-icon">
+                                            <i data-feather="git-compare"></i>
+                                        </div>
+                                        <div class="step-content">
+                                            <h6>So sánh Hash</h6>
+                                            <small>Hash Comparison</small>
+                                        </div>
+                                    </div>
+                                    <div class="flow-arrow">→</div>
+                                    <div class="flow-step">
+                                        <div class="step-icon verify-icon">
+                                            <i data-feather="shield-check"></i>
+                                        </div>
+                                        <div class="step-content">
+                                            <h6>Kết quả</h6>
+                                            <small>Verification Result</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Actions -->
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div class="action-card sign-card">
+                            <div class="card-header">
+                                <h4 class="mb-0">
+                                    <i data-feather="upload" class="me-2"></i>
+                                    Ký Tài Liệu
+                                </h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="upload-area" id="uploadArea">
+                                    <div class="upload-content">
+                                        <i data-feather="cloud-upload" class="upload-icon"></i>
+                                        <h5>Kéo thả file vào đây</h5>
+                                        <p class="text-muted">hoặc click để chọn file</p>
+                                        <input type="file" id="fileInput" class="d-none" accept=".txt,.pdf,.png,.jpg,.jpeg,.gif,.doc,.docx,.zip">
+                                        <button class="btn btn-outline-primary" onclick="document.getElementById('fileInput').click()">
+                                            Chọn File
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="upload-progress d-none" id="uploadProgress">
+                                    <div class="progress mb-3">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%"></div>
+                                    </div>
+                                    <div class="text-center">
+                                        <small class="text-muted">Đang xử lý...</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="action-card verify-card">
+                            <div class="card-header">
+                                <h4 class="mb-0">
+                                    <i data-feather="search" class="me-2"></i>
+                                    Xác Thực Chữ Ký
+                                </h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="files-list" id="filesList">
+                                    <div class="text-center py-4">
+                                        <i data-feather="folder" class="text-muted mb-3" style="width: 48px; height: 48px;"></i>
+                                        <p class="text-muted">Chưa có file nào được ký</p>
+                                        <button class="btn btn-outline-secondary" onclick="loadFiles()">
+                                            <i data-feather="refresh-cw" class="me-1"></i>
+                                            Tải lại
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Result Modal -->
+<div class="modal fade" id="resultModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Kết Quả Xử Lý</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Content will be populated by JavaScript -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Certificate Modal -->
+<div class="modal fade" id="certificateModal" tabindex="-1">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <i data-feather="award" class="me-2"></i>
+                    Thông Tin Chứng Chỉ
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="certificateBody">
+                <!-- Content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Initialize when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    loadFiles();
+    feather.replace();
+});
+</script>
+{% endblock %}
