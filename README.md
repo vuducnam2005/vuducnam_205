@@ -14,6 +14,7 @@
                 Phù hợp cho hợp đồng điện tử, tài liệu pháp lý, giao dịch ngân hàng và mọi trường hợp cần xác thực tài liệu số.
 
 Cấu trúc thư mục:
+
 ![image](https://github.com/user-attachments/assets/e15525b2-d494-4d01-a0b7-d06bbc51847c)
 
 Giao diện ứng dụng:
